@@ -15,6 +15,8 @@
 	<description>Building a Microservice for Multi-Factor Authentication (MFA) with Java, Spring, and Docker</description>
 	<properties>
 		<java.version>17</java.version>
+		<springdoc.version>2.1.0</springdoc.version>
+		<snakeyaml.version>2.2</snakeyaml.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -22,11 +24,15 @@
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>${springdoc.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.yaml</groupId>
 			<artifactId>snakeyaml</artifactId>
-			<version>2.2</version>
+			<version>${snakeyaml.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
