@@ -1,1 +1,17 @@
-
+#server:
+#  error:
+#    include-binding-errors: always
+#    include-message: always
+#    include-stacktrace: always
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: nexohome77@gmail.com
+    password: xzurzplmzscsahyq
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
