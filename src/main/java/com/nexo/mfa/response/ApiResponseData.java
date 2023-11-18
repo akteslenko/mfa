@@ -8,7 +8,7 @@ import lombok.Data;
 @Builder
 public class ApiResponseData {
     @JsonInclude(JsonInclude.Include.NON_NULL)
-    private String message;
+    private Object message;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object data;
 }

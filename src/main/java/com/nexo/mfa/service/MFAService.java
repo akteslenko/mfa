@@ -1,5 +1,7 @@
 package com.nexo.mfa.service;
 
+import com.nexo.mfa.exception.OTPCodeException;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,5 +21,9 @@ public class MFAService {
 
     public void verifyOTPCode(String email, String code) {
         String generatedCode = this.otpCodeGenerator.generateCode(email);
+
+        if (!generatedCode.equals(code)) {
+            throw new OTPCodeException(HttpStatus.UNAUTHORIZED, "Invalid otp code provided.");
+        }
     }
 }

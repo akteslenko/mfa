@@ -11,7 +11,7 @@ public class VerifyCodeRequest {
     @Email(message = "Email address is not valid.")
     private String email;
 
-    @NotEmpty(message = "Email could not be null or empty.")
+    @NotEmpty(message = "Code could not be null or empty.")
     @Length(min = 6, max = 6, message = "Invalid code length.")
     private String code;
 }
