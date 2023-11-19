@@ -38,7 +38,7 @@ public class OTPCodeGenerator {
     private byte[] hmacHash(String key, long time) {
         try {
             byte[] keyBytes = key.getBytes(StandardCharsets.UTF_8);
-            byte[] timeBytes = ByteBuffer.allocate(8).putLong(time).array();
+            byte[] timeBytes = ByteBuffer.allocate(Long.BYTES).putLong(time).array();
 
             Mac hmac = Mac.getInstance(ALGORITHM);
             SecretKeySpec macKey = new SecretKeySpec(keyBytes, ALGORITHM);
