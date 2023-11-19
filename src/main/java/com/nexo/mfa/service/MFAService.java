@@ -19,13 +19,13 @@ public class MFAService {
     public void sendOTPCode(String email) {
         String code = this.otpCodeGenerator.generateCode(email);
         this.mailService.sendEmail(email, code);
-        log.info("Send generated code: {}", code);
+        log.info("Send generated code for user: {} - {}", code, email);
     }
 
     public void verifyOTPCode(String email, String code) {
         String generatedCode = this.otpCodeGenerator.generateCode(email);
 
-        log.info("Compare codes. Generated: {}, Current: {}", generatedCode, code);
+        log.info("Compare codes {}. Generated: {}, Current: {}", email, generatedCode, code);
         if (!code.equals(generatedCode)) {
             throw new OTPCodeException(HttpStatus.UNAUTHORIZED, "Invalid otp code provided.");
         }
