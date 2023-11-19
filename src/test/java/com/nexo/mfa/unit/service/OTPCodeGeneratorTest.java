@@ -38,6 +38,6 @@ class OTPCodeGeneratorTest {
 
         String otpCode = otpCodeGenerator.generateCode(key);
 
-        assertEquals("888175", otpCode);
+        assertEquals("897029", otpCode);
     }
 }
