@@ -22,7 +22,7 @@ public class MFAService {
     public void verifyOTPCode(String email, String code) {
         String generatedCode = this.otpCodeGenerator.generateCode(email);
 
-        if (!generatedCode.equals(code)) {
+        if (!code.equals(generatedCode)) {
             throw new OTPCodeException(HttpStatus.UNAUTHORIZED, "Invalid otp code provided.");
         }
     }
