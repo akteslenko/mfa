@@ -6,14 +6,16 @@ import com.nexo.mfa.service.MFAService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
 @RequestMapping("/api/v1")
 @Validated
 public class MFAController {
-
     private final MFAService mfaService;
 
     public MFAController(MFAService mfaService) {
@@ -24,7 +26,7 @@ public class MFAController {
     public ResponseEntity<String> sendCode(@Valid @RequestBody SendCodeRequest sendCodeRequest) {
         this.mfaService.sendOTPCode(sendCodeRequest.getEmail());
 
-        return ResponseEntity.ok("User created successfully");
+        return ResponseEntity.ok("Email sent successfully");
     }
 
     @PostMapping("/verify-code")

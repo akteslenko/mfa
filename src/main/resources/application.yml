@@ -1,4 +1,11 @@
 spring:
+  otp:
+    totp-digits: 6
+    totp-period: 60
+  mail-sender:
+    from: "no-replynexohome77@gmail.com"
+    subject: "MFA Verification Code"
+    text: "Your MFA verification code is: "
   mail:
     host: smtp.gmail.com
     port: 587

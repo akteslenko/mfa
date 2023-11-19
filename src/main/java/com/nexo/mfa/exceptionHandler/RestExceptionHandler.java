@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.MailException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -24,7 +25,6 @@ public class RestExceptionHandler {
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .toList();
 
-//        ApiResponseData responseData = getApiResponse(exception.getBindingResult().getAllErrors().get(0).getDefaultMessage());
         ApiResponseData responseData = getApiResponse(errors);
 
         return new ResponseEntity<>(responseData, HttpStatus.BAD_REQUEST);
@@ -35,6 +35,13 @@ public class RestExceptionHandler {
         ApiResponseData responseData = getApiResponse(exception.getReason());
 
         return new ResponseEntity<>(responseData, exception.getStatusCode());
+    }
+
+    @ExceptionHandler(MailException.class)
+    public ResponseEntity<Object> handleMailException(final MailException exception) {
+        ApiResponseData responseData = getApiResponse("Email send error.");
+
+        return new ResponseEntity<>(responseData, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     private ApiResponseData getApiResponse(Object exception) {
