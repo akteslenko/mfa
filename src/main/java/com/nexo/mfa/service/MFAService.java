@@ -18,8 +18,8 @@ public class MFAService {
 
     public void sendOTPCode(String email) {
         String code = this.otpCodeGenerator.generateCode(email);
-        log.info("Send generated code: {}", code);
         this.mailService.sendEmail(email, code);
+        log.info("Send generated code: {}", code);
     }
 
     public void verifyOTPCode(String email, String code) {
