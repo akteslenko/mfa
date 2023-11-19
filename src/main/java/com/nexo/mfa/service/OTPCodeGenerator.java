@@ -1,5 +1,6 @@
 package com.nexo.mfa.service;
 
+import com.nexo.mfa.util.TimeProvider;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,6 @@ import java.lang.reflect.UndeclaredThrowableException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.security.GeneralSecurityException;
-import java.time.Instant;
 
 @Service
 public class OTPCodeGenerator {
@@ -21,8 +21,15 @@ public class OTPCodeGenerator {
     @Value("${spring.otp.totp-period}")
     private int TOTP_PERIOD;
 
+    private final TimeProvider timeProvider;
+
+    public OTPCodeGenerator(TimeProvider timeProvider) {
+        this.timeProvider = timeProvider;
+    }
+
     public String generateCode(String key) {
-        long time = Instant.now().getEpochSecond() / TOTP_PERIOD;
+        long time = this.timeProvider.getCurrentEpochSecond() / TOTP_PERIOD;
+
         byte[] hmacHash = hmacHash(key, time);
 
         return otpCode(hmacHash);
@@ -36,6 +43,7 @@ public class OTPCodeGenerator {
             Mac hmac = Mac.getInstance(ALGORITHM);
             SecretKeySpec macKey = new SecretKeySpec(keyBytes, ALGORITHM);
             hmac.init(macKey);
+
             return hmac.doFinal(timeBytes);
         } catch (GeneralSecurityException exception) {
             throw new UndeclaredThrowableException(exception);
