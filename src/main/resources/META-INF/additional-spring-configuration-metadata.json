@@ -1,0 +1,29 @@
+{
+  "properties": [
+    {
+      "name": "spring.mail-sender.from",
+      "type": "java.lang.String",
+      "description": "Description for spring.mail-sender.from."
+    },
+    {
+      "name": "spring.mail-sender.subject",
+      "type": "java.lang.String",
+      "description": "Description for spring.mail-sender.subject."
+    },
+    {
+      "name": "spring.mail-sender.text",
+      "type": "java.lang.String",
+      "description": "Description for spring.mail-sender.text."
+    },
+    {
+      "name": "spring.otp.totp-digits",
+      "type": "java.lang.String",
+      "description": "Description for spring.otp.totp-digits."
+    },
+    {
+      "name": "spring.otp.totp-period",
+      "type": "java.lang.String",
+      "description": "Description for spring.otp.totp-period."
+    }
+  ]
+}
